@@ -2855,6 +2855,28 @@ typedef struct {
     wifi_mld_common_info_t common_info;
 } __attribute__((packed)) wifi_mld_info_ap_t;
 
+typedef struct _wifi_apmld_cfg{
+     BOOL emlmr_enabled ;
+     BOOL emlsr_enabled;
+     BOOL str_enabled;
+     BOOL nstr_enabled;
+}__attribute__((packed)) wifi_apmld_cfg_t;
+
+typedef struct _wifi_affiliated_ap{
+      char bssid[18];
+      unsigned long link_id;
+      unsigned long ru_id;
+      unsigned long disabled_sub_channels;
+} __attribute__((packed)) wifi_affiliated_ap_t;
+
+typedef struct {
+      wifi_mld_common_info_t common_info;
+      unsigned long affiliated_ap_number_of_entries;
+      unsigned long sta_mld_num_entries;
+      wifi_apmld_cfg_t ap_mld_cfg;
+      wifi_affiliated_ap_t affiliated_ap[MAX_NUM_RADIOS];
+} __attribute__((packed)) wifi_apmld_info_t;
+
 typedef struct {
     ssid_t              ssid;
     bssid_t             bssid; // if bssid is set to all 0, scan the ssid with probes, otherwise connect to specified bssid
